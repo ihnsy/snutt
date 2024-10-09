@@ -1,0 +1,22 @@
+.loginButton {
+  background-color: lightgray;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: not-allowed;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.active {
+  background-color: orange;
+  cursor: pointer;
+}
+
+.active:hover {
+  background-color: darkorange;
+}
+
+.active:active {
+  background-color: orangered;
+}
