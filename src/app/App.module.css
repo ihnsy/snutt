@@ -1,4 +1,4 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 
 .wrapper {
   padding-top: 232px;
@@ -11,7 +11,7 @@
 .title {
   color: var(--Text-Normal, #000);
   text-align: center;
-  font-family: "SF Pro";
+  font-family: 'SF Pro';
   font-size: 21.353px;
   font-style: normal;
   font-weight: 860;
@@ -31,9 +31,11 @@
 
 .login {
   border-radius: 6px;
-  background: var(--SNUTT-orange, #F58D3D);
-  color: var(--Text-onBG, #FFF);
-  font-feature-settings: 'liga' off, 'clig' off;
+  background: var(--SNUTT-orange, #f58d3d);
+  color: var(--Text-onBG, #fff);
+  font-feature-settings:
+    'liga' off,
+    'clig' off;
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -51,7 +53,9 @@
 .signUp {
   color: var(--Text-Plain, #505050);
   text-align: center;
-  font-feature-settings: 'liga' off, 'clig' off;
+  font-feature-settings:
+    'liga' off,
+    'clig' off;
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -69,8 +73,10 @@
 }
 
 .snsText {
-  color: var(--Text-Assistive, #C4C4C4);
-  font-feature-settings: 'liga' off, 'clig' off;
+  color: var(--Text-Assistive, #c4c4c4);
+  font-feature-settings:
+    'liga' off,
+    'clig' off;
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
@@ -79,7 +85,7 @@
 }
 
 .bar {
-  color: #C4C4C4;
+  color: #c4c4c4;
   width: 100px;
   height: 0.75px;
 }

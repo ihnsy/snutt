@@ -3,14 +3,14 @@ import './tailwind.css';
 
 import { useState } from 'react';
 
-import styles from './App.module.css'
-import Login from './Login'
+import styles from './App.module.css';
+import Login from './Login';
 
 export const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   const goLogin = () => {
-    setShowLogin(true);
+    setShowLogin(!showLogin);
   };
 
   return (
@@ -34,15 +34,31 @@ export const App = () => {
               <hr className={styles.bar} />
             </div>
             <div className="flex items-center gap-3">
-              <img src="/assets/kakao.png" className="w-11 h-11 rounded-full" alt="kakao" />
-              <img src="/assets/google.png" className="w-11 h-11 rounded-full" alt="google" />
-              <img src="/assets/facebook.png" className="w-11 h-11 rounded-full" alt="facebook" />
-              <img src="/assets/apple.png" className="w-11 h-11 rounded-full" alt="apple" />
+              <img
+                src="/assets/kakao.png"
+                className="w-11 h-11 rounded-full"
+                alt="kakao"
+              />
+              <img
+                src="/assets/google.png"
+                className="w-11 h-11 rounded-full"
+                alt="google"
+              />
+              <img
+                src="/assets/facebook.png"
+                className="w-11 h-11 rounded-full"
+                alt="facebook"
+              />
+              <img
+                src="/assets/apple.png"
+                className="w-11 h-11 rounded-full"
+                alt="apple"
+              />
             </div>
           </div>
         </>
       ) : (
-        <Login />
+        <Login goLogin={goLogin} />
       )}
     </div>
   );
