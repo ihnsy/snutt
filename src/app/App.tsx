@@ -3,11 +3,11 @@ import './tailwind.css';
 
 import { useState } from 'react';
 
-import image1 from '../../assets/apple.png'
-import image2 from '../../assets/facebook.png'
-import image3 from '../../assets/google.png'
-import image4 from '../../assets/kakao.png'
-import logo from '../../assets/logo.svg'
+import image1 from '../../assets/apple.png';
+import image2 from '../../assets/facebook.png';
+import image3 from '../../assets/google.png';
+import image4 from '../../assets/kakao.png';
+import logo from '../../assets/logo.svg';
 import styles from './App.module.css';
 import Login from './Login';
 
@@ -55,7 +55,7 @@ export const App = () => {
                 alt="facebook"
               />
               <img
-                src = {image1}
+                src={image1}
                 className="w-11 h-11 rounded-full"
                 alt="apple"
               />
