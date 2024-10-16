@@ -14,7 +14,9 @@ const Login: React.FC<LoginProps> = ({ goLogin }) => {
 
   const isFormFilled = username !== '' && password !== '';
 
-  async function handleLogin(e: React.FormEvent<HTMLFormElement>): Promise<void> {
+  async function handleLogin(
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> {
     e.preventDefault();
 
     type LoginResponse = {
@@ -44,7 +46,8 @@ const Login: React.FC<LoginProps> = ({ goLogin }) => {
       },
     );
 
-    const loginData: LoginResponse = (await loginResponse.json()) as LoginResponse;
+    const loginData: LoginResponse =
+      (await loginResponse.json()) as LoginResponse;
     localStorage.setItem('token', loginData.token);
 
     if (loginData.token !== '') {
@@ -133,7 +136,7 @@ const Login: React.FC<LoginProps> = ({ goLogin }) => {
 
             <button
               type="submit"
-              className={`${styles.loginButton ?? ''} ${isFormFilled ? styles.active ?? '' : ''}`}
+              className={`${styles.loginButton ?? ''} ${isFormFilled ? (styles.active ?? '') : ''}`}
             >
               로그인
             </button>
