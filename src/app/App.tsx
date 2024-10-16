@@ -3,6 +3,11 @@ import './tailwind.css';
 
 import { useState } from 'react';
 
+import image1 from '../../assets/apple.png';
+import image2 from '../../assets/facebook.png';
+import image3 from '../../assets/google.png';
+import image4 from '../../assets/kakao.png';
+import logo from '../../assets/logo.svg';
 import styles from './App.module.css';
 import Login from './Login';
 
@@ -18,7 +23,7 @@ export const App = () => {
       {!showLogin ? (
         <>
           <div className="flex-col flex items-center gap-4">
-            <img src="/assets/logo.svg" width="60" height="60" alt="logo" />
+            <img src={logo} width="60" height="60" alt="logo" />
             <h1 className={styles.title}>TimeTable</h1>
           </div>
           <div className={styles.buttons}>
@@ -35,22 +40,22 @@ export const App = () => {
             </div>
             <div className="flex items-center gap-3">
               <img
-                src="/assets/kakao.png"
+                src={image4}
                 className="w-11 h-11 rounded-full"
                 alt="kakao"
               />
               <img
-                src="/assets/google.png"
+                src={image3}
                 className="w-11 h-11 rounded-full"
                 alt="google"
               />
               <img
-                src="/assets/facebook.png"
+                src={image2}
                 className="w-11 h-11 rounded-full"
                 alt="facebook"
               />
               <img
-                src="/assets/apple.png"
+                src={image1}
                 className="w-11 h-11 rounded-full"
                 alt="apple"
               />
