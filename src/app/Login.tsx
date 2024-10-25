@@ -20,7 +20,7 @@ type UserData = {
   };
 };
 
-const Login: React.FC<LoginProps> = () => {
+const Login = ({ goLogin }: LoginProps) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
