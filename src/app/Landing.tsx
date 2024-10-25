@@ -11,8 +11,8 @@ import logo from '../../assets/logo.svg';
 import styles from './App.module.css';
 import Login from './Login';
 
-export const App = () => {
-  const [showLogin, setShowLogin] = useState(false);
+export const Landing = () => {
+  const [showLogin, setShowLogin] = useState<boolean>(false);
 
   const goLogin = () => {
     setShowLogin(!showLogin);
