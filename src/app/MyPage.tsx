@@ -16,7 +16,8 @@ const MyPage: React.FC = () => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('token'); // localStorage에서 token 가져오기
 
-      if (token !== null && token !== '') { // token이 null이나 빈 문자열이 아닌 경우
+      if (token !== null && token !== '') {
+        // token이 null이나 빈 문자열이 아닌 경우
         try {
           const userResponse = await fetch(
             'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
@@ -30,7 +31,9 @@ const MyPage: React.FC = () => {
 
           if (userResponse.ok) {
             const userData: UserData = (await userResponse.json()) as UserData;
-            setNickname(`${userData.nickname.nickname}#${userData.nickname.tag}`); // 닉네임 설정
+            setNickname(
+              `${userData.nickname.nickname}#${userData.nickname.tag}`,
+            ); // 닉네임 설정
           } else {
             console.error('사용자 정보를 가져오는 데 실패했습니다.');
           }
@@ -63,9 +66,7 @@ const MyPage: React.FC = () => {
       <p>닉네임: {nickname}</p>
 
       {/* 시간표로 이동하는 버튼 */}
-      <button onClick={goToTimeTable}>
-        시간표 보기
-      </button>
+      <button onClick={goToTimeTable}>시간표 보기</button>
 
       {/* 로그아웃 버튼 */}
       <button onClick={handleLogout} style={{ marginLeft: '10px' }}>

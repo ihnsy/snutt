@@ -28,7 +28,9 @@ const Login: React.FC<LoginProps> = () => {
 
   const isFormFilled = username !== '' && password !== '';
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleLogin = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
 
     try {
@@ -47,7 +49,8 @@ const Login: React.FC<LoginProps> = () => {
       );
 
       // 명확한 타입을 반환
-      const loginData: LoginResponse = await loginResponse.json() as LoginResponse;
+      const loginData: LoginResponse =
+        (await loginResponse.json()) as LoginResponse;
 
       if (loginData.token !== '') {
         localStorage.setItem('token', loginData.token); // 토큰을 localStorage에 저장
@@ -63,7 +66,7 @@ const Login: React.FC<LoginProps> = () => {
         );
 
         // 사용자 데이터를 명확하게 타입 지정하여 처리
-        const userData: UserData = await userResponse.json() as UserData;
+        const userData: UserData = (await userResponse.json()) as UserData;
 
         setNickname(`${userData.nickname.nickname}#${userData.nickname.tag}`);
 
@@ -82,13 +85,22 @@ const Login: React.FC<LoginProps> = () => {
       {nickname === '' ? (
         <>
           {/* '뒤로' 버튼 */}
-          <a onClick={() => { navigate('/'); }} className={styles.backButton}>
+          <a
+            onClick={() => {
+              navigate('/');
+            }}
+            className={styles.backButton}
+          >
             &lt; 뒤로
           </a>
 
           <h2 className={styles.title}>로그인</h2>
 
-          <form onSubmit={(e) => { void handleLogin(e); }}>
+          <form
+            onSubmit={(e) => {
+              void handleLogin(e);
+            }}
+          >
             <div>
               <label className={styles.label} htmlFor="username">
                 아이디
@@ -98,7 +110,9 @@ const Login: React.FC<LoginProps> = () => {
                 type="text"
                 placeholder="아이디를 입력하세요"
                 value={username}
-                onChange={(e) => { setUsername(e.target.value); }}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
                 required
               />
             </div>
@@ -111,7 +125,9 @@ const Login: React.FC<LoginProps> = () => {
                 type="password"
                 placeholder="비밀번호를 입력하세요"
                 value={password}
-                onChange={(e) => { setPassword(e.target.value); }}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 required
               />
             </div>

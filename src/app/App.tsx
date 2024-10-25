@@ -1,7 +1,12 @@
 import '../reset.css';
 import './tailwind.css';
 
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom'; // 라우터 추가
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from 'react-router-dom'; // 라우터 추가
 
 import image1 from '../../assets/apple.png';
 import image2 from '../../assets/facebook.png';
@@ -14,16 +19,12 @@ import MyPage from './MyPage'; // 마이페이지 추가
 import TimeTable from './TimeTable'; // 시간표 페이지 추가
 
 export const App = () => {
-
   return (
     <Router>
       <div className={styles.wrapper}>
         <Routes>
           {/* 첫 화면 */}
-          <Route
-            path="/"
-            element={<HomePage />}
-          />
+          <Route path="/" element={<HomePage />} />
           {/* 로그인 페이지 */}
           <Route path="/login" element={<Login />} />
           {/* 로그인 후 시간표 페이지 */}
