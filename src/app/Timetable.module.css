@@ -1,0 +1,14 @@
+.header {
+  padding: 8px 12px 6px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+.timetable {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+}
