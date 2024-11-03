@@ -4,12 +4,12 @@ import styles from '@/app/Login.module.css';
 import { useNavigation } from '@/app/useNavigate';
 
 type LoginProps = {
-  goLogin: () => void;
+  goRimetable: () => void;
 };
 
-export const Login = ({ goLogin }: LoginProps) => {
+export const Login = ({ goTimetable }: LoginProps) => {
 
-	const { goMypage } = useNavigation();
+	const { goTimetable } = useNavigation();
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [token, setToken] = useState<string>('');
@@ -144,7 +144,7 @@ export const Login = ({ goLogin }: LoginProps) => {
 							로그인
 						</button>
 					</form>
-				</div>) : (goMypage())}
+				</div>) : (goTimetable())}
 		</div>
 	);
 };

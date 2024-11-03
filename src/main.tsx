@@ -9,7 +9,7 @@ import Timetable from '@/app/Timetable';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/landing',
     element: <Landing />,
   },
   {
@@ -17,12 +17,12 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: '/mypage',
-    element: <Mypage />,
+    path: '/',
+    element: <Timetable />,
   },
   {
-    path: '/timetable',
-    element: <Timetable />,
+    path: '/mypage',
+    element: <Mypage />,
   },
 ]);
 

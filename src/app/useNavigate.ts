@@ -8,9 +8,8 @@ export const useNavigation = () => {
       const targetPath = '/login';
       navigate(targetPath, { replace: true });
     },
-    goMypage: () => {
-      const targetPath = '/mypage';
+    goTimetable: () => {
+      const targetPath = '/';
       navigate(targetPath, { replace: true });
     },
-  };
 };

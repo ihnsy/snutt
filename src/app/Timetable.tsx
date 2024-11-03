@@ -1,5 +1,7 @@
 import '@/app/tailwind.css';
 import styles from '@/app/Timetable.module.css'
+import { useNavigation } from '@/app/useNavigate';
+
 import list from '@/../assets/header_list.svg'
 import timetable from '@/../assets/tab_timetable.svg'
 import search from '@/../assets//tab_search_off.svg'
@@ -11,6 +13,55 @@ import people4 from '@/../assets/tab_people_off_4.svg'
 import more from '@/../assets/tab_more_off.svg'
 
 export const Timetable = () => {
+  const getTimetable = async () => {
+    const data = await fetch('https://snutt-api-dev.wafflestudio.com/v1/tables/recent')
+    .then((response) => response.json());
+    return data
+  }
+  const {data} = useQuery(['timetable'], getTimetable, {enabled: !!id})
+
+  type Day = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  type Hour24 =
+    | 0
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15
+    | 16
+    | 17
+    | 18
+    | 19
+    | 20
+    | 21
+    | 22
+    | 23;
+    
+  const DAY_LABEL_MAP = {
+    0: '월',
+    1: '화',
+    2: '수',
+    3: '목',
+    4: '금',
+    5: '토',
+    6: '일',
+  };
+  const dayList: Day[] = [0, 1, 2, 3, 4, 5, 6];
+  const hourList: Hour24[] = Array.from(
+    { length: 14 },
+    (_, i) => (9 + i) as Hour24,
+  );
+
   return (
     <>
     <div className="h-full bg-white flex flex-col items-center justify-center">
