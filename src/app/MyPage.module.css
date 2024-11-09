@@ -1,59 +1,59 @@
 .mypageContainer {
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 10px 0;
   background-color: #ffffff;
   font-family: Arial, sans-serif;
 }
 
 .title {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .section {
-  padding: 20px 30px;
+  padding: 10px 20px;
   background-color: #ffffff;
 }
 
 .section + .section {
-  border-top: 10px solid #e0e0e0;
+  border-top: 5px solid #e0e0e0;
 }
 
 .sectionTitle {
-  font-size: 16px;
+  font-size: 14px;
   color: #888;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .accountSection {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
+  padding: 10px 0;
 }
 
 .accountInfo {
   font-weight: normal;
   color: #888888;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .menuItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
-  font-size: 16px;
+  padding: 10px 0;
+  font-size: 14px;
   color: #333333;
   border-top: 1px solid #e0e0e0;
 }
 
 .menuRight {
   color: #888888;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .logoutButton {
@@ -62,27 +62,27 @@
   border: none;
   text-align: left;
   width: 100%;
-  padding: 20px 30px;
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
-  border-top: 10px solid #e0e0e0;
+  border-top: 5px solid #e0e0e0;
 }
 
 .bottomNav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 20px 0;
+  padding: 10px 0;
   background-color: #ffffff;
   max-width: 600px;
   margin: 0 auto;
-  border-top: 2px solid #ddd;
+  border-top: 1px solid #ddd;
 }
 
 .navIcon {
-  font-size: 28px;
+  font-size: 24px;
   color: #888888;
-  padding: 10px;
+  padding: 5px;
 }
 
 .navIcon:first-child {
