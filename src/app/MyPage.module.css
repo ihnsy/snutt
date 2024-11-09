@@ -1,0 +1,102 @@
+/* Main container */
+.mypageContainer {
+  max-width: 600px; /* 상단과 하단의 가로 너비를 맞추기 위해 설정 */
+  margin: 0 auto;
+  padding: 20px 0;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+/* Page title */
+.title {
+  text-align: center;
+  font-size: 24px; /* 글자 크기를 키움 */
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Section styling */
+.section {
+  padding: 20px 30px;
+  background-color: #ffffff;
+}
+
+.section + .section {
+  border-top: 10px solid #e0e0e0;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+/* Account section styling */
+.accountSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.accountInfo {
+  font-weight: normal;
+  color: #888888;
+  font-size: 16px;
+}
+
+/* Menu items in each section */
+.menuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  font-size: 16px;
+  color: #333333;
+  border-top: 1px solid #e0e0e0;
+}
+
+.menuRight {
+  color: #888888;
+  font-size: 16px;
+}
+
+/* Logout button */
+.logoutButton {
+  color: #d9534f;
+  background-color: #ffffff;
+  border: none;
+  text-align: left;
+  width: 100%;
+  padding: 20px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border-top: 10px solid #e0e0e0;
+}
+
+/* Bottom navigation bar */
+.bottomNav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+  background-color: #ffffff;
+  max-width: 600px; /* 상단과 동일한 너비로 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+  border-top: 2px solid #ddd;
+}
+
+/* Individual icon styling inside bottom navigation */
+.navIcon {
+  font-size: 28px;
+  color: #888888;
+  padding: 10px;
+}
+
+.navIcon:first-child {
+  color: #000000;
+}
+
+.navIcon:last-child {
+  color: #000000;
+}
