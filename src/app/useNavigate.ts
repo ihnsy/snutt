@@ -12,4 +12,13 @@ export const useNavigation = () => {
       const targetPath = '/';
       navigate(targetPath, { replace: true });
     },
+    goMypage: () => {
+      const targetPath = '/mypage';
+      navigate(targetPath, { replace: true });
+    },
+    goLanding: () => {
+      const targetPath = '/landing';
+      navigate(targetPath, { replace: true });
+    },
+  };
 };
