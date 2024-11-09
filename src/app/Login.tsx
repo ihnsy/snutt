@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 추가
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Login.module.css';
 
@@ -24,7 +24,7 @@ const Login: React.FC<LoginProps> = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
-  const navigate = useNavigate(); // useNavigate 사용
+  const navigate = useNavigate();
 
   const isFormFilled = username !== '' && password !== '';
 
@@ -48,29 +48,26 @@ const Login: React.FC<LoginProps> = () => {
         },
       );
 
-      // 명확한 타입을 반환
       const loginData: LoginResponse =
         (await loginResponse.json()) as LoginResponse;
 
       if (loginData.token !== '') {
-        localStorage.setItem('token', loginData.token); // 토큰을 localStorage에 저장
+        localStorage.setItem('token', loginData.token);
 
         const userResponse = await fetch(
           'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
           {
             method: 'GET',
             headers: {
-              'x-access-token': loginData.token, // localStorage에 저장된 token을 사용
+              'x-access-token': loginData.token,
             },
           },
         );
 
-        // 사용자 데이터를 명확하게 타입 지정하여 처리
         const userData: UserData = (await userResponse.json()) as UserData;
 
         setNickname(`${userData.nickname.nickname}#${userData.nickname.tag}`);
 
-        // 로그인 성공 후 시간표 페이지로 이동
         navigate('/timetable');
       } else {
         console.error('로그인 실패:', loginData.message);
@@ -84,7 +81,6 @@ const Login: React.FC<LoginProps> = () => {
     <div className={styles.container}>
       {nickname === '' ? (
         <>
-          {/* '뒤로' 버튼 */}
           <a
             onClick={() => {
               navigate('/');

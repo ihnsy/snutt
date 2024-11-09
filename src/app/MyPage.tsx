@@ -19,7 +19,6 @@ const MyPage: React.FC = () => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('token');
 
-      // token이 null 또는 빈 문자열이 아닌 경우에만 fetchUserData 호출
       if (token !== null && token !== '') {
         try {
           const userResponse = await fetch(
@@ -34,7 +33,9 @@ const MyPage: React.FC = () => {
 
           if (userResponse.ok) {
             const userData = (await userResponse.json()) as UserData;
-            setNickname(`${userData.nickname.nickname}#${userData.nickname.tag}`);
+            setNickname(
+              `${userData.nickname.nickname}#${userData.nickname.tag}`,
+            );
           } else {
             console.error('사용자 정보를 가져오는 데 실패했습니다.');
           }
@@ -47,7 +48,6 @@ const MyPage: React.FC = () => {
       }
     };
 
-    // void를 사용해 fetchUserData 호출 시 반환된 Promise 무시 처리
     void fetchUserData();
   }, [navigate]);
 
@@ -69,7 +69,6 @@ const MyPage: React.FC = () => {
         <p className={styles.accountInfo}>{nickname ?? '닉네임 없음'}</p>
       </div>
 
-      {/* Display Section */}
       <div className={styles.section}>
         <div className={styles.menuItem}>
           색상모드 <span className={styles.menuRight}>라이트모드</span>
@@ -78,12 +77,10 @@ const MyPage: React.FC = () => {
         <div className={styles.menuItem}>시간표 테마</div>
       </div>
 
-      {/* Service Section */}
       <div className={styles.section}>
         <div className={styles.menuItem}>빈자리 알림</div>
       </div>
 
-      {/* Information and Suggestions Section */}
       <div className={styles.section}>
         <div className={styles.menuItem}>버전 정보</div>
         <div className={styles.menuItem}>개발자 정보</div>

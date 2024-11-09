@@ -6,7 +6,7 @@ import {
   Route,
   Routes,
   useNavigate,
-} from 'react-router-dom'; // 라우터 추가
+} from 'react-router-dom';
 
 import image1 from '../../assets/apple.png';
 import image2 from '../../assets/facebook.png';
@@ -15,21 +15,17 @@ import image4 from '../../assets/kakao.png';
 import logo from '../../assets/logo.svg';
 import styles from './App.module.css';
 import Login from './Login';
-import MyPage from './MyPage'; // 마이페이지 추가
-import TimeTable from './TimeTable'; // 시간표 페이지 추가
+import MyPage from './MyPage';
+import TimeTable from './TimeTable';
 
 export const App = () => {
   return (
     <Router>
       <div className={styles.wrapper}>
         <Routes>
-          {/* 첫 화면 */}
           <Route path="/" element={<HomePage />} />
-          {/* 로그인 페이지 */}
           <Route path="/login" element={<Login />} />
-          {/* 로그인 후 시간표 페이지 */}
           <Route path="/timetable" element={<TimeTable />} />
-          {/* 마이페이지 */}
           <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </div>
@@ -38,10 +34,10 @@ export const App = () => {
 };
 
 const HomePage = () => {
-  const navigate = useNavigate(); // useNavigate는 Router 내부에서 사용되어야 함
+  const navigate = useNavigate();
 
   const goLogin = () => {
-    navigate('/login'); // 로그인 버튼 클릭 시 로그인 페이지로 이동
+    navigate('/login');
   };
 
   return (
