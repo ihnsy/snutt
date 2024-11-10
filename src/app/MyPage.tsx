@@ -99,9 +99,7 @@ const MyPage: React.FC = () => {
         로그아웃
       </button>
 
-      <div
-        className="flex border-t-[1px] border-t-[#C4C4C4] w-[375px] h-[50px] py-[10px] px-[30px] justify-between absolute bottom-0"
-      >
+      <div className="flex border-t-[1px] border-t-[#C4C4C4] w-[375px] h-[50px] py-[10px] px-[30px] justify-between absolute bottom-0">
         <img src={timetable} className="w-7.5 h-7.5" onClick={goToTimeTable} />
         <img src={search} className="w-7.5 h-7.5" />
         <img src={thumb} className="w-7.5 h-7.5" />
