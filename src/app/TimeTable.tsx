@@ -58,7 +58,7 @@ const TimeTable: React.FC = () => {
     void bringTimetable();
   }, []);
 
-  console.debug(LectureList)
+  console.debug(LectureList);
 
   return (
     <div className="flex flex-col h-screen border max-w-[375px] mx-auto w-full">
@@ -69,7 +69,8 @@ const TimeTable: React.FC = () => {
       </div>
       <div className="flex w-[375px] h-[800px] flex-col">
         <div className="grid w-full h-[30px] grid-cols-[5%_19%_19%_19%_19%_19%] divide-x divide-[#C4C4C4] border-y border-y-[#C4C4C4]">
-          <div></div>{/* 빈자리 */}
+          <div></div>
+          {/* 빈자리 */}
           {DAYS_OF_WEEK.map((day, index) => (
             <div
               key={index}
@@ -94,13 +95,16 @@ const TimeTable: React.FC = () => {
           {DAYS_OF_WEEK.map((_, dayIndex) => (
             <div key={dayIndex} className="relative flex flex-col">
               {HOURS.map((_, hourIndex) => (
-                <div key={hourIndex} className="relative flex-grow border-b border-b-[#C4C4C4]">
+                <div
+                  key={hourIndex}
+                  className="relative flex-grow border-b border-b-[#C4C4C4]"
+                >
                   {/* Horizontal Divider */}
                   <div className="absolute inset-x-0 top-1/2 border-t border-t-[#C4C4C4]" />
                 </div>
               ))}
               {/* Add Lectures for the Day */}
-              {(LectureList !== null) &&
+              {LectureList !== null &&
                 LectureList.lecture_list.map((lecture, lectureIndex) =>
                   lecture.class_time_json
                     .filter((classTime) => classTime.day === dayIndex)
@@ -112,9 +116,7 @@ const TimeTable: React.FC = () => {
                       const duration = endHourPosition - startHourPosition;
 
                       return (
-                        <Slot
-                          key={`${lectureIndex}-${classTimeIndex}`}
-                        >
+                        <Slot key={`${lectureIndex}-${classTimeIndex}`}>
                           <div
                             className="absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold border text-white bg-black"
                             style={{
@@ -128,7 +130,7 @@ const TimeTable: React.FC = () => {
                         </Slot>
                       );
                     }),
-              )}
+                )}
             </div>
           ))}
         </div>
