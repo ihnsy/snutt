@@ -22,7 +22,7 @@
   background-color: #ffffff;
 }
 
-.section + .section {
+.section+.section {
   border-top: 5px solid #e0e0e0;
 }
 
@@ -36,7 +36,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 
 .accountInfo {
