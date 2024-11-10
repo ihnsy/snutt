@@ -1,12 +1,24 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .wrapper {
-  padding-top: 232px;
-  padding-bottom: 90px;
+  width: 375px;
+  height: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
+
 
 .title {
   color: var(--Text-Normal, #000);
