@@ -58,6 +58,8 @@ const TimeTable: React.FC = () => {
     void bringTimetable();
   }, []);
 
+  console.debug(LectureList)
+
   return (
     <div className="flex flex-col h-screen border max-w-[375px] mx-auto w-full">
       <div className="flex w-[375px] h-[64px] py-[8px] px-[16px] border-b-[1px] border-b-[#C4C4C4] items-center gap-[10px]">
@@ -67,6 +69,7 @@ const TimeTable: React.FC = () => {
       </div>
       <div className="flex w-[375px] h-[800px] flex-col">
         <div className="grid w-full h-[30px] grid-cols-[5%_19%_19%_19%_19%_19%] divide-x divide-[#C4C4C4] border-y border-y-[#C4C4C4]">
+          <div></div>{/* 빈자리 */}
           {DAYS_OF_WEEK.map((day, index) => (
             <div
               key={index}
@@ -76,12 +79,12 @@ const TimeTable: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="grid flex-grow grid-cols-[5%_19%_19%_19%_19%_19%] divide-x">
+        <div className="grid flex-grow grid-cols-[5%_19%_19%_19%_19%_19%] divide-x divide-[#C4C4C4]">
           <div className="flex flex-col">
             {HOURS.map((hour) => (
               <div
                 key={hour}
-                className="flex flex-grow justify-center border-b text-xs text-muted-foreground"
+                className="flex flex-grow justify-center border-b border-b-[#C4C4C4] text-xs text-muted-foreground"
               >
                 {hour}
               </div>
@@ -91,40 +94,40 @@ const TimeTable: React.FC = () => {
           {DAYS_OF_WEEK.map((_, dayIndex) => (
             <div key={dayIndex} className="relative flex flex-col">
               {HOURS.map((_, hourIndex) => (
-                <div key={hourIndex} className="relative flex-grow border-b">
+                <div key={hourIndex} className="relative flex-grow border-b border-b-[#C4C4C4]">
                   {/* Horizontal Divider */}
-                  <div className="absolute inset-x-0 top-1/2 border-t border-muted" />
+                  <div className="absolute inset-x-0 top-1/2 border-t border-t-[#C4C4C4]" />
                 </div>
               ))}
               {/* Add Lectures for the Day */}
-              {LectureList.lecture_list.map((lecture, lectureIndex) =>
-                lecture.class_time_json
-                  .filter((classTime) => classTime.day === dayIndex)
-                  .map((classTime, classTimeIndex) => {
-                    const startHourPosition =
-                      classTime.startMinute / 60 - START_OF_DAY;
-                    const endHourPosition =
-                      classTime.endMinute / 60 - START_OF_DAY;
-                    const duration = endHourPosition - startHourPosition;
+              {(LectureList !== null) &&
+                LectureList.lecture_list.map((lecture, lectureIndex) =>
+                  lecture.class_time_json
+                    .filter((classTime) => classTime.day === dayIndex)
+                    .map((classTime, classTimeIndex) => {
+                      const startHourPosition =
+                        classTime.startMinute / 60 - START_OF_DAY;
+                      const endHourPosition =
+                        classTime.endMinute / 60 - START_OF_DAY;
+                      const duration = endHourPosition - startHourPosition;
 
-                    return (
-                      <Slot
-                        key={`${lectureIndex}-${classTimeIndex}`}
-                        className="hover:opacity-80"
-                      >
-                        <div
-                          className="absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold text-white"
-                          style={{
-                            top: `${(startHourPosition * 100) / NUM_HOURS}%`,
-                            height: `${(duration * 100) / NUM_HOURS}%`,
-                          }}
+                      return (
+                        <Slot
+                          key={`${lectureIndex}-${classTimeIndex}`}
                         >
-                          <p>{lecture.course_title}</p>
-                          <p>{classTime.place}</p>
-                        </div>
-                      </Slot>
-                    );
-                  }),
+                          <div
+                            className="absolute inset-x-0 flex flex-col justify-center p-2 text-center text-xs font-bold border text-white bg-black"
+                            style={{
+                              top: `${(startHourPosition * 100) / NUM_HOURS}%`,
+                              height: `${(duration * 100) / NUM_HOURS}%`,
+                            }}
+                          >
+                            <p>{lecture.course_title}</p>
+                            <p>{classTime.place}</p>
+                          </div>
+                        </Slot>
+                      );
+                    }),
               )}
             </div>
           ))}
