@@ -1,7 +1,7 @@
 // LectureTypes.ts
 
 // Define the LectureBuilding type
-export type LectureRequest = { token: string }
+export type LectureRequest = { token: string };
 export type LectureBuilding = {
   id: string;
   buildingNumber: string;
@@ -20,7 +20,7 @@ export type LectureBuilding = {
 
 // Define the LectureTime type
 export type LectureTime = {
-  day: string;
+  day: 0 | 1 | 2 | 3 | 4 | 5;
   place: string;
   startMinute: number;
   endMinute: number;
