@@ -1,6 +1,7 @@
 // LectureTypes.ts
 
 // Define the LectureBuilding type
+export type LectureRequest = { token: string }
 export type LectureBuilding = {
   id: string;
   buildingNumber: string;

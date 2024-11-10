@@ -11,7 +11,7 @@ import people4 from '@/../assets/tab_people_off_4.svg';
 import thumb from '@/../assets/tab_thumb_off.svg';
 import timetable from '@/../assets/tab_timetable.svg';
 
-import type { LectureList } from './LectureTypes';
+import type { LectureList} from './LectureTypes';
 
 const TimeTable: React.FC = () => {
   const navigate = useNavigate();
@@ -21,35 +21,35 @@ const TimeTable: React.FC = () => {
     navigate('/mypage'); // 마이페이지로 이동
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = localStorage.getItem('token') as string;
+  
+  const bringTimetable = async (): Promise<void> => {
 
-      try {
-        const userResponse = await fetch(
-          'https://snutt-api-dev.wafflestudio.com/v1/tables/recent',
-          {
-            method: 'GET',
-            headers: { 'x-access-token': token },
-          }
-        );
+    const token = localStorage.getItem('token') as string;
 
-        if (!userResponse.ok) {
-          throw new Error(`Failed to fetch user data: ${userResponse.statusText}`);
+    try {
+      const userResponse = await fetch(
+        'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/recent',
+        {
+          method: 'GET',
+          headers: { 'x-access-token': token },
         }
+      );
 
-        const userData = await userResponse.json() as LectureList;
-        setLectureList(userData);
-        console.debug(userData) // 데이터를 state에 저장
-      } catch (error) {
-        console.error('Error fetching user data:', error);
+      if (!userResponse.ok) {
+        throw new Error(`Failed to fetch user data: ${userResponse.statusText}`);
       }
-    };
 
-    fetchData().catch((error: unknown) => {
-      console.error('Error in fetchData execution:', error); // .catch로 에러 처리 추가
-    });
-  }, []);
+      const userData: LectureList = await userResponse.json() as LectureList;
+      setLectureList(userData);
+      console.debug(userData) // 데이터를 state에 저장
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
+
+  useEffect(() => {
+    void bringTimetable();
+  }, [])
 
 
   return (
