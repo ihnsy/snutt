@@ -70,7 +70,7 @@ const TimeTable: React.FC = () => {
   console.debug(LectureList);
 
   return (
-    <div className="flex flex-col h-[100dvh] mx-auto w-full">
+    <div className="flex flex-col h-[100dvh] w-[100dvh]">
       <div className="flex h-[64px] py-[8px] px-[16px] border-b-[1px] border-b-[#C4C4C4] items-center gap-[10px]">
         <img src={list} className="w-[18px] h-[18px] mr-[5px]" />
         <h1 className="w-[25px] h-[24px] text-base content-center">a안</h1>
