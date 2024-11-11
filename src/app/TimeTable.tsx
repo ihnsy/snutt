@@ -11,6 +11,7 @@ import people3 from '@/../assets/tab_people_off_3.svg';
 import people4 from '@/../assets/tab_people_off_4.svg';
 import thumb from '@/../assets/tab_thumb_off.svg';
 import timetable from '@/../assets/tab_timetable.svg';
+import {useAuth} from '@/app/App'
 
 import type { LectureList } from './LectureTypes';
 
@@ -22,14 +23,20 @@ const HOURS = Array.from({ length: NUM_HOURS }, (_, i) => START_OF_DAY + i);
 
 const TimeTable: React.FC = () => {
   const navigate = useNavigate();
+  const { token } = useAuth();
   const [LectureList, setLectureList] = useState<LectureList | null>(null);
 
   const goToMyPage = () => {
     navigate('/mypage'); // 마이페이지로 이동
   };
+  
+  useEffect(() => {
+    if (!token) {
+      navigate('/login');
+    }
+  }, [token, navigate]);
 
   const bringTimetable = async (): Promise<void> => {
-    const token = localStorage.getItem('token') as string;
 
     try {
       const userResponse = await fetch(

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import {useAuth} from '@/app/App'
+
 import styles from './Login.module.css';
 
 interface LoginProps {
@@ -25,6 +27,7 @@ const Login: React.FC<LoginProps> = () => {
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
   const navigate = useNavigate();
+  const { setToken } = useAuth();
 
   const isFormFilled = username !== '' && password !== '';
 
@@ -52,7 +55,7 @@ const Login: React.FC<LoginProps> = () => {
         (await loginResponse.json()) as LoginResponse;
 
       if (loginData.token !== '') {
-        localStorage.setItem('token', loginData.token);
+        setToken(loginData.token);
 
         const userResponse = await fetch(
           'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
@@ -68,7 +71,7 @@ const Login: React.FC<LoginProps> = () => {
 
         setNickname(`${userData.nickname.nickname}#${userData.nickname.tag}`);
 
-        navigate('/timetable');
+        navigate('/');
       } else {
         console.error('로그인 실패:', loginData.message);
       }

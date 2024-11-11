@@ -1,6 +1,7 @@
 import '../reset.css';
 import './tailwind.css';
 
+import { createContext, useContext, useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -18,18 +19,48 @@ import Login from './Login';
 import MyPage from './MyPage';
 import TimeTable from './TimeTable';
 
+const AuthContext = createContext<{ token: string; setToken: React.Dispatch<React.SetStateAction<string>> } | undefined>(undefined);
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
+  return context;
+};
+
 export const App = () => {
+  const [token, setToken] = useState<string>('');
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('token');
+    }
+  }, [token]);
+
   return (
-    <Router>
-      <div className={styles.wrapper}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/timetable" element={<TimeTable />} />
-          <Route path="/mypage" element={<MyPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <AuthContext.Provider value={{ token, setToken }}>
+      <Router>
+        <div className={styles.wrapper}>
+          <Routes>
+            {token !== '' ? (
+              // 토큰이 존재하는 경우 로그인된 상태의 경로 렌더링
+              <>
+                <Route path="/" element={<TimeTable />} />
+                <Route path="/mypage" element={<MyPage />} />
+                <Route path="/login" element={<Login />} />
+              </>
+            ) : (
+              // 토큰이 없거나 빈 문자열인 경우 홈 경로 렌더링
+              <>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<Login />} />
+              </>
+            )}
+          </Routes>
+        </div>
+      </Router>
+    </AuthContext.Provider>
   );
 };
 
