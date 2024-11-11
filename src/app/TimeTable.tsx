@@ -70,13 +70,13 @@ const TimeTable: React.FC = () => {
   console.debug(LectureList);
 
   return (
-    <div className="flex flex-col h-screen border max-w-[375px] mx-auto w-full">
-      <div className="flex w-[375px] h-[64px] py-[8px] px-[16px] border-b-[1px] border-b-[#C4C4C4] items-center gap-[10px]">
+    <div className="flex flex-col h-[100dvh] mx-auto w-full">
+      <div className="flex h-[64px] py-[8px] px-[16px] border-b-[1px] border-b-[#C4C4C4] items-center gap-[10px]">
         <img src={list} className="w-[18px] h-[18px] mr-[5px]" />
         <h1 className="w-[25px] h-[24px] text-base content-center">a안</h1>
         <p className="w-[45px] h-[16px] text-xs text-[#C4C4C4]">(18학점)</p>
       </div>
-      <div className="flex w-[375px] h-[800px] flex-col">
+      <div className="flex h-[800px] flex-col">
         <div className="grid w-full h-[30px] grid-cols-[5%_19%_19%_19%_19%_19%] divide-x divide-[#C4C4C4] border-y border-y-[#C4C4C4]">
           <div></div>
           {/* 빈자리 */}
@@ -144,7 +144,7 @@ const TimeTable: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="flex border-t-[1px] border-t-[#C4C4C4] w-[375px] h-[50px] py-[10px] px-[30px] justify-between">
+      <div className="flex border-t-[1px] border-t-[#C4C4C4] h-[50px] py-[10px] px-[30px] justify-between">
         <img src={timetable} className="w-7.5 h-7.5" />
         <img src={search} className="w-7.5 h-7.5" />
         <img src={thumb} className="w-7.5 h-7.5" />
