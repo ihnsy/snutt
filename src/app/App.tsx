@@ -41,7 +41,7 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center h-dvh">
       <div className="flex-col flex items-center gap-4">
         <img src={logo} width="60" height="60" alt="logo" />
         <h1 className={styles.title}>TimeTable</h1>
@@ -65,6 +65,6 @@ const HomePage = () => {
           <img src={image1} className="w-11 h-11 rounded-full" alt="apple" />
         </div>
       </div>
-    </>
+    </div>
   );
 };
