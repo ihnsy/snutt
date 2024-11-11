@@ -31,9 +31,19 @@ export const App = () => {
   const [token, setToken] = useState<string>('');
 
   useEffect(() => {
-    if (token) {
+    // 새로고침 시, localStorage에서 token을 불러와 상태에 설정
+    const storedToken = localStorage.getItem('token') as string;
+    if (storedToken !== "") {
+      setToken(storedToken);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (token !== '') {
+      setToken(token)
       localStorage.setItem('token', token);
     } else {
+      setToken('')
       localStorage.removeItem('token');
     }
   }, [token]);
@@ -66,7 +76,6 @@ export const App = () => {
 
 const HomePage = () => {
   const navigate = useNavigate();
-
   const goLogin = () => {
     navigate('/login');
   };

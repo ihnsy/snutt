@@ -56,7 +56,7 @@ const Login: React.FC<LoginProps> = () => {
 
       if (loginData.token !== '') {
         setToken(loginData.token);
-
+        localStorage.setItem('token', loginData.token)
         const userResponse = await fetch(
           'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/users/me',
           {

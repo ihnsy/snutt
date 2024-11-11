@@ -24,17 +24,12 @@ const HOURS = Array.from({ length: NUM_HOURS }, (_, i) => START_OF_DAY + i);
 const TimeTable: React.FC = () => {
   const navigate = useNavigate();
   const { token } = useAuth();
+  localStorage.setItem('token', token)
   const [LectureList, setLectureList] = useState<LectureList | null>(null);
 
   const goToMyPage = () => {
     navigate('/mypage'); // 마이페이지로 이동
   };
-  
-  useEffect(() => {
-    if (!token) {
-      navigate('/login');
-    }
-  }, [token, navigate]);
 
   const bringTimetable = async (): Promise<void> => {
 
@@ -63,7 +58,7 @@ const TimeTable: React.FC = () => {
 
   useEffect(() => {
     void bringTimetable();
-  }, []);
+  }, [token]);
 
   console.debug(LectureList);
 
