@@ -68,7 +68,7 @@ const Login: React.FC<LoginProps> = () => {
 
         setNickname(`${userData.nickname.nickname}#${userData.nickname.tag}`);
 
-        navigate('/timetable');
+        navigate('/');
       } else {
         console.error('로그인 실패:', loginData.message);
       }

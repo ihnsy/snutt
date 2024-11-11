@@ -61,7 +61,7 @@ const MyPage: React.FC = () => {
   }, [navigate]);
 
   const goToTimeTable = () => {
-    navigate('/timetable');
+    navigate('/');
   };
 
   const handleLogout = () => {
