@@ -24,6 +24,15 @@ const TimeTable: React.FC = () => {
   const navigate = useNavigate();
   const [LectureList, setLectureList] = useState<LectureList | null>(null);
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token === null || token.trim() === '') {
+      navigate('/home'); // 토큰이 없으면 홈 페이지로 리다이렉트
+    } else {
+      void bringTimetable(); // 토큰이 있으면 시간표 정보 가져오기
+    }
+  }, [navigate]);
+
   const goToMyPage = () => {
     navigate('/mypage'); // 마이페이지로 이동
   };

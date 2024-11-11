@@ -14,7 +14,6 @@ import image3 from '../../assets/google.png';
 import image4 from '../../assets/kakao.png';
 import logo from '../../assets/logo.svg';
 import styles from './App.module.css';
-import CheckToken from './CheckToken';
 import Login from './Login';
 import MyPage from './MyPage';
 import TimeTable from './TimeTable';
@@ -24,9 +23,8 @@ export const App = () => {
     <Router>
       <div className={styles.wrapper}>
         <Routes>
-          <Route path="/" element={<CheckToken />} />
+          <Route path="/" element={<TimeTable />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/timetable" element={<TimeTable />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/home" element={<HomePage />} />
         </Routes>
