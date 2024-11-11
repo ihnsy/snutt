@@ -19,15 +19,14 @@ import MyPage from './MyPage';
 import TimeTable from './TimeTable';
 
 export const App = () => {
-  const Token = localStorage.getItem('token') as string;
   return (
     <Router>
       <div className={styles.wrapper}>
         <Routes>
-        <Route path="/" element={Token !== '' ? <TimeTable /> : <HomePage />} />
+          <Route path="/" element={<TimeTable />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/timetable" element={<TimeTable />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/home" element={<HomePage />} />
         </Routes>
       </div>
     </Router>
