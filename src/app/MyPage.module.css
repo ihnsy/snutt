@@ -1,5 +1,4 @@
 .mypageContainer {
-  width: 375px;
   height: 729.6px;
   margin: 0 auto;
   padding: 10px 0;
@@ -22,7 +21,7 @@
   background-color: #ffffff;
 }
 
-.section + .section {
+.section+.section {
   border-top: 5px solid #e0e0e0;
 }
 
