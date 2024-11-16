@@ -1,5 +1,5 @@
-import '../reset.css';
-import './tailwind.css';
+import '@/reset.css';
+import '@/app/tailwind.css';
 
 import {
   BrowserRouter as Router,
@@ -8,15 +8,16 @@ import {
   useNavigate,
 } from 'react-router-dom';
 
-import image1 from '../../assets/apple.png';
-import image2 from '../../assets/facebook.png';
-import image3 from '../../assets/google.png';
-import image4 from '../../assets/kakao.png';
-import logo from '../../assets/logo.svg';
-import styles from './App.module.css';
-import Login from './Login';
-import MyPage from './MyPage';
-import TimeTable from './TimeTable';
+import image1 from '@/../assets/apple.png';
+import image2 from '@/../assets/facebook.png';
+import image3 from '@/../assets/google.png';
+import image4 from '@/../assets/kakao.png';
+import logo from '@/../assets/logo.svg';
+import styles from '@/app/App.module.css';
+import Login from '@/app/Login';
+import MyPage from '@/app/MyPage';
+import TimeTable from '@/app/TimeTable';
+import Timetablelist from '@/app/Timetablelist'
 
 export const App = () => {
   return (
@@ -24,6 +25,7 @@ export const App = () => {
       <div className={styles.wrapper}>
         <Routes>
           <Route path="/" element={<TimeTable />} />
+            <Route path='timetables/:id/lectures' element={<Timetablelist />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/home" element={<HomePage />} />

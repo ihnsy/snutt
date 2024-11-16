@@ -37,6 +37,10 @@ const TimeTable: React.FC = () => {
     navigate('/mypage'); // 마이페이지로 이동
   };
 
+  const goToTimetablelist = () => {
+    navigate('/timetables/:id/lectures')
+  }
+
   const bringTimetable = async (): Promise<void> => {
     const token = localStorage.getItem('token') as string;
 
@@ -72,7 +76,7 @@ const TimeTable: React.FC = () => {
   return (
     <div className="flex flex-col h-[100dvh]">
       <div className="flex h-10 py-[8px] px-[16px] border-b-[1px] border-b-[#C4C4C4] items-center gap-[10px]">
-        <img src={list} className="w-[18px] h-[18px] mr-[5px]" />
+        <img src={list} className="w-[18px] h-[18px] mr-[5px]" onClick={goToTimetablelist}/>
         <h1 className="w-[25px] h-[24px] text-base content-center">a안</h1>
         <p className="w-[45px] h-[16px] text-xs text-[#C4C4C4]">(18학점)</p>
       </div>
