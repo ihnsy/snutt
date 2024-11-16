@@ -17,7 +17,7 @@ import styles from '@/app/App.module.css';
 import Login from '@/app/Login';
 import MyPage from '@/app/MyPage';
 import TimeTable from '@/app/TimeTable';
-import Timetablelist from '@/app/Timetablelist'
+import Timetablelist from '@/app/Timetablelist';
 
 export const App = () => {
   return (
@@ -25,7 +25,7 @@ export const App = () => {
       <div className={styles.wrapper}>
         <Routes>
           <Route path="/" element={<TimeTable />} />
-            <Route path='timetables/:id/lectures' element={<Timetablelist />} />
+          <Route path="timetables/:id/lectures" element={<Timetablelist />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/home" element={<HomePage />} />

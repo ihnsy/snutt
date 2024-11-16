@@ -52,17 +52,18 @@ const Timetablelist: React.FC = () => {
 
   console.debug(LectureList); // LectureList 콘솔에 출력 (디버깅 용도)
 
-  return(
+  return (
     <div>
       <button onClick={goToTimeTable}>뒤로</button>
       {/* LectureList가 null이 아니고 lecture_list가 있을 때만 렌더링 */}
-      {LectureList !== null && LectureList.lecture_list.map((lecture, index) => (
-        <div key={index}>
-          <p>{lecture.course_title}</p>
-        </div>
-      ))}
+      {LectureList !== null &&
+        LectureList.lecture_list.map((lecture, index) => (
+          <div key={index}>
+            <p>{lecture.course_title}</p>
+          </div>
+        ))}
     </div>
   );
-}
+};
 
 export default Timetablelist;
