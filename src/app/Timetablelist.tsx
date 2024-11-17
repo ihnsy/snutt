@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import back from '@/../assets/back_icon.svg';
 import type { LectureList } from '@/app/LectureTypes';
+
+import { Navbar } from './Navbar';
 
 const Timetablelist: React.FC = () => {
   const navigate = useNavigate();
   const [LectureList, setLectureList] = useState<LectureList | null>(null);
+  const dayMapping = ["M", "T", "W", "T", "F", "S"]
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -53,15 +57,49 @@ const Timetablelist: React.FC = () => {
   console.debug(LectureList); // LectureList 콘솔에 출력 (디버깅 용도)
 
   return (
-    <div>
-      <button onClick={goToTimeTable}>뒤로</button>
-      {/* LectureList가 null이 아니고 lecture_list가 있을 때만 렌더링 */}
-      {LectureList !== null &&
-        LectureList.lecture_list.map((lecture, index) => (
-          <div key={index}>
-            <p>{lecture.course_title}</p>
+    <div className="flex flex-col h-[100dvh]">
+      <div className="flex border-b-[1px] border-b-[#C8C8C8] h-[50px] py-[10px] px-[5px] justify-between">
+        <div className="flex flex-row items-center gap-[0px] cursor-pointer" onClick={goToTimeTable}>
+          <img src={back} className="w-[30px] h-[30px]" />
+          <div className="w-auto h-auto items-center justify-center">
+            <p>뒤로</p>
           </div>
-        ))}
+        </div>
+      </div>
+      <div className="1fr">
+        {LectureList !== null &&
+          LectureList.lecture_list.map((lecture, index) => (
+            <div key={index} className="flex flex-col py-[5px] px-[8px] border-b-[1px] border-b-[#C4C4C4]">
+              <div className="flex flex-row justify-between">
+                <p className="text-sm font-bold">{lecture.course_title}</p>
+                <p className="text-xs">{lecture.instructor} &#47; {lecture.credit}학점</p>
+              </div>
+              <div className="flex flex-row items-center">
+                {lecture.class_time_json.map((_, i) => (
+                  <React.Fragment key={i}>
+                    <p className="text-xs">
+                      {typeof lecture.class_time_json[i]?.day === "number" 
+                        ? dayMapping[lecture.class_time_json[i].day] 
+                        : "-"} ({lecture.class_time_json[i]?.start_time}~{lecture.class_time_json[i]?.end_time})
+                    </p>
+                    {i < lecture.class_time_json.length - 1 && <span>,&nbsp;</span>}
+                  </React.Fragment>
+                ))}
+              </div>
+              <div className="flex flex-row items-center">
+                {lecture.class_time_json.map((_, i) => (
+                  <React.Fragment key={i}>
+                    <p className="text-xs">
+                    {lecture.class_time_json[i]?.place !== ''? lecture.class_time_json[i]?.place : "-"}
+                    </p>
+                    {i < lecture.class_time_json.length - 1 && <span>,&nbsp;</span>}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          ))}
+      </div>
+      <Navbar />
     </div>
   );
 };
