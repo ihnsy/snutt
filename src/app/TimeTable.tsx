@@ -26,7 +26,6 @@ const TimeTable: React.FC = () => {
     }
   }, [navigate]);
 
-
   const goToTimetablelist = () => {
     navigate('/timetables/:id/lectures');
   };

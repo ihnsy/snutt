@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {Navbar} from '@/app/Navbar'
+import { Navbar } from '@/app/Navbar';
 
 import styles from './MyPage.module.css';
 
