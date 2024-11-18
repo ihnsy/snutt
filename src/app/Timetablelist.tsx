@@ -24,8 +24,12 @@ const Timetablelist: React.FC = () => {
     navigate('/'); // 뒤로가기
   };
 
-  const goToLectureDetail = () => {
-    navigate('/timetables/:id/lectures/:id'); // 경로 이동
+  const goToLectureDetail = (lectureId: string) => {
+    if (LectureList !== null && typeof LectureList._id === 'string' && LectureList._id.trim() !== '') {
+      navigate(`/timetables/${LectureList._id}/lectures/${lectureId}`);
+    } else {
+      console.error('LectureList or _id is invalid');
+    }
   };
 
   const bringTimetablelist = async (): Promise<void> => {
@@ -79,7 +83,9 @@ const Timetablelist: React.FC = () => {
             <div
               key={index}
               className="flex flex-col py-[5px] px-[8px] border-b-[1px] border-b-[#C4C4C4] cursor-pointer"
-              onClick={goToLectureDetail} // 클릭 시 이동
+              onClick={() => {
+                goToLectureDetail(lecture._id);
+              }} // 클릭 시 이동
             >
               <div className="flex flex-row justify-between">
                 <p className="text-sm font-bold">{lecture.course_title}</p>
@@ -107,7 +113,7 @@ const Timetablelist: React.FC = () => {
                 {lecture.class_time_json.map((_, i) => (
                   <React.Fragment key={i}>
                     <p className="text-xs">
-                      {lecture.class_time_json[i]?.place !== ''
+                      {lecture.class_time_json[i]?.place?.trim() !== ''
                         ? lecture.class_time_json[i]?.place
                         : '-'}
                     </p>
