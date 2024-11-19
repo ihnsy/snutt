@@ -2,9 +2,8 @@ import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Navbar } from '@/app/Navbar';
-
-import styles from './MyPage.module.css';
+import { Navbar } from '@/components/Navbar';
+import styles from '@/styles/MyPage.module.css';
 
 type UserData = {
   nickname: {

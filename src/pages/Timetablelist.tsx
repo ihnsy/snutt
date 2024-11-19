@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import back from '@/../assets/back_icon.svg';
-import type { LectureList } from '@/app/LectureTypes';
-
-import { Navbar } from './Navbar';
+import { Navbar } from '@/components/Navbar';
+import type { LectureList } from '@/types/LectureTypes';
 
 const Timetablelist: React.FC = () => {
   const navigate = useNavigate();
