@@ -130,7 +130,8 @@ const LectureDetail: React.FC = () => {
           onClick={() => {
             if (typeof id === 'string') {
               navigate(`/timetables/${id}/lectures`);
-          }}}
+            }
+          }}
           className="text-blue-500 text-lg"
         >
           ← 돌아가기
@@ -202,8 +203,7 @@ const LectureDetail: React.FC = () => {
           const timeDay =
             typeof time.day === 'number' ? `요일 ${time.day}` : '미정';
           const timeStart =
-            typeof time.start_time === 'string' &&
-            time.start_time.trim() !== ''
+            typeof time.start_time === 'string' && time.start_time.trim() !== ''
               ? time.start_time
               : '-';
           const timeEnd =
