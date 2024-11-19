@@ -24,6 +24,10 @@ const Timetablelist: React.FC = () => {
     navigate('/'); // 뒤로가기
   };
 
+  const goLecturedetail = (_id: string) =>{
+    navigate(`/timetables/:id/lectures/${_id}`);
+  }
+
   const bringTimetablelist = async (): Promise<void> => {
     const token = localStorage.getItem('token') as string;
 
@@ -74,6 +78,7 @@ const Timetablelist: React.FC = () => {
           LectureList.lecture_list.map((lecture, index) => (
             <div
               key={index}
+              onClick={() => { goLecturedetail(lecture._id); }}
               className="flex flex-col py-[5px] px-[8px] border-b-[1px] border-b-[#C4C4C4]"
             >
               <div className="flex flex-row justify-between">
