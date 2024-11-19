@@ -3,6 +3,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 0 auto;
+  padding: 10px 0;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  position: relative;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .title {
