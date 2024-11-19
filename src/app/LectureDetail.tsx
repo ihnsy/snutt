@@ -123,119 +123,118 @@ const LectureDetail: React.FC = () => {
       : '정보 없음';
 
   return (
-    <div className="flex justify-center items-center bg-gray-50">
-      <div className="flex flex-col items-center p-6 w-full bg-white">
-        {/* 상단 네비게이션 */}
-        <div className="flex justify-between items-center border-b pb-2 mb-4 w-full">
-          <button
-            onClick={() => {
-              navigate(`/timetables/:id/lectures`);
-            }}
-            className="text-blue-500 text-lg"
-          >
-            ← 돌아가기
-          </button>
-        </div>
+    <div className="h-[100dvh] flex flex-col items-center p-6 w-full">
+      {/* 상단 네비게이션 */}
+      <div className="basis-[1] flex-grow-0 flex-shrink-0 flex justify-between items-center border-b pb-2 w-full">
+        <button
+          onClick={() => {
+            if (typeof id === 'string') {
+              navigate(`/timetables/${id}/lectures`);
+          }}}
+          className="text-blue-500 text-lg"
+        >
+          ← 돌아가기
+        </button>
+      </div>
 
-        {/* 강의 제목 */}
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold mb-2">{courseTitle}</h1>
-          <p className="text-lg text-gray-600">교수: {instructor}</p>
-        </div>
+      {/* 강의 제목 */}
+      <div className="basis-[1] flex-grow-0 flex-shrink-0 text-center">
+        <h1 className="text-xl font-bold my-2">{courseTitle}</h1>
+        <p className="text-lg text-gray-600">교수: {instructor}</p>
+      </div>
 
-        {/* 상세 정보 */}
-        <div className="text-center space-y-2 mb-6">
-          <p>
-            학과:{' '}
-            {typeof lecture.department === 'string' &&
-            lecture.department.trim() !== ''
-              ? lecture.department
-              : '정보 없음'}
-          </p>
-          <p>
-            학점:{' '}
-            {typeof credit === 'number' && !isNaN(credit) && credit > 0
-              ? credit
-              : '정보 없음'}
-          </p>
-          <p>
-            분류:{' '}
-            {typeof lecture.category === 'string' &&
-            lecture.category.trim() !== ''
-              ? lecture.category
-              : '정보 없음'}
-          </p>
-          <p>
-            구분:{' '}
-            {typeof lecture.remark === 'string' && lecture.remark.trim() !== ''
-              ? lecture.remark
-              : '(없음)'}
-          </p>
-          <p>
-            강좌번호:{' '}
-            {typeof lecture.course_number === 'string' &&
-            lecture.course_number.trim() !== ''
-              ? lecture.course_number
-              : '정보 없음'}
-          </p>
-          <p>
-            분반번호:{' '}
-            {typeof lecture.lecture_number === 'string' &&
-            lecture.lecture_number.trim() !== ''
-              ? lecture.lecture_number
-              : '정보 없음'}
-          </p>
-          <p>
-            정원:{' '}
-            {typeof lecture.quota === 'number' &&
-            !isNaN(lecture.quota) &&
-            lecture.quota > 0
-              ? lecture.quota
-              : '정보 없음'}
-          </p>
-        </div>
+      {/* 상세 정보 */}
+      <div className="basis-[4] flex-grow-0 flex-shrink-0 text-center space-y-2 mb-6">
+        <p>
+          학과:{' '}
+          {typeof lecture.department === 'string' &&
+          lecture.department.trim() !== ''
+            ? lecture.department
+            : '정보 없음'}
+        </p>
+        <p>
+          학점:{' '}
+          {typeof credit === 'number' && !isNaN(credit) && credit > 0
+            ? credit
+            : '정보 없음'}
+        </p>
+        <p>
+          분류:{' '}
+          {typeof lecture.category === 'string' &&
+          lecture.category.trim() !== ''
+            ? lecture.category
+            : '정보 없음'}
+        </p>
+        <p>
+          구분:{' '}
+          {typeof lecture.remark === 'string' && lecture.remark.trim() !== ''
+            ? lecture.remark
+            : '(없음)'}
+        </p>
+        <p>
+          강좌번호:{' '}
+          {typeof lecture.course_number === 'string' &&
+          lecture.course_number.trim() !== ''
+            ? lecture.course_number
+            : '정보 없음'}
+        </p>
+        <p>
+          분반번호:{' '}
+          {typeof lecture.lecture_number === 'string' &&
+          lecture.lecture_number.trim() !== ''
+            ? lecture.lecture_number
+            : '정보 없음'}
+        </p>
+        <p>
+          정원:{' '}
+          {typeof lecture.quota === 'number' &&
+          !isNaN(lecture.quota) &&
+          lecture.quota > 0
+            ? lecture.quota
+            : '정보 없음'}
+        </p>
+      </div>
 
-        {/* 시간 및 장소 */}
-        <div className="text-center border-t border-b py-4 mb-6">
-          <h2 className="text-xl font-bold mb-2">시간 및 장소</h2>
-          {lecture.class_time_json.map((time, i) => {
-            const timeDay =
-              typeof time.day === 'number' ? `요일 ${time.day}` : '미정';
-            const timeStart =
-              typeof time.start_time === 'string' &&
-              time.start_time.trim() !== ''
-                ? time.start_time
-                : '-';
-            const timeEnd =
-              typeof time.end_time === 'string' && time.end_time.trim() !== ''
-                ? time.end_time
-                : '-';
-            const place =
-              typeof time.place === 'string' && time.place.trim() !== ''
-                ? time.place.trim()
-                : '미정';
+      {/* 시간 및 장소 */}
+      <div className="basis-[3] flex-grow-0 flex-shrink-0 text-center border-t border-b py-4 mb-6">
+        <h2 className="text-l font-bold mb-2">시간 및 장소</h2>
+        {lecture.class_time_json.map((time, i) => {
+          const timeDay =
+            typeof time.day === 'number' ? `요일 ${time.day}` : '미정';
+          const timeStart =
+            typeof time.start_time === 'string' &&
+            time.start_time.trim() !== ''
+              ? time.start_time
+              : '-';
+          const timeEnd =
+            typeof time.end_time === 'string' && time.end_time.trim() !== ''
+              ? time.end_time
+              : '-';
+          const place =
+            typeof time.place === 'string' && time.place.trim() !== ''
+              ? time.place.trim()
+              : '미정';
 
-            return (
-              <div key={i} className="mb-2">
-                <p className="font-medium">
-                  {timeDay} {timeStart} ~ {timeEnd}
-                </p>
-                <p className="text-gray-600">장소: {place}</p>
-              </div>
-            );
-          })}
-        </div>
+          return (
+            <div key={i} className="mb-2">
+              <p className="font-medium">
+                {timeDay} {timeStart} ~ {timeEnd}
+              </p>
+              <p className="text-gray-600">장소: {place}</p>
+            </div>
+          );
+        })}
+      </div>
 
-        <div className="flex flex-col space-y-4 w-full">
-          <button
-            onClick={() => {
-              void handleDelete();
-            }}
-            className="w-full py-3 text-red-500 font-bold"
-          >
-            삭제
-          </button>
-        </div>
+      <div className="basis-[1] flex-grow-0 flex-shrink-0 flex flex-col space-y-4 w-full">
+        <button
+          onClick={() => {
+            void handleDelete();
+          }}
+          className="w-full py-3 text-red-500 font-bold"
+        >
+          삭제
+        </button>
       </div>
     </div>
   );

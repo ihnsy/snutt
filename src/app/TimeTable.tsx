@@ -26,10 +26,6 @@ const TimeTable: React.FC = () => {
     }
   }, [navigate]);
 
-  const goToTimetablelist = () => {
-    navigate('/timetables/:id/lectures');
-  };
-
   const bringTimetable = async (): Promise<void> => {
     const token = localStorage.getItem('token') as string;
 
@@ -61,6 +57,15 @@ const TimeTable: React.FC = () => {
   }, []);
 
   console.debug(LectureList);
+
+  const goToTimetablelist = () => {
+    if (LectureList !== null) {
+      const id = LectureList._id; // LectureList의 _id를 가져옴
+      navigate(`/timetables/${id}/lectures`);
+    } else {
+      console.error('LectureList is null. Cannot navigate.');
+    }
+  };
 
   return (
     <div className="flex flex-col h-[100dvh]">
