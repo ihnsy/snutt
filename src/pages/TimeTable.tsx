@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import list from '@/../assets/header_list.svg';
-import { Navbar } from '@/app/Navbar';
-
-import type { LectureList } from './LectureTypes';
+import { Navbar } from '@/components/Navbar';
+import type { LectureList } from '@/types/LectureTypes';
 
 const DAYS_OF_WEEK = ['월', '화', '수', '목', '금'] as const;
 const START_OF_DAY = 9;
@@ -25,10 +24,6 @@ const TimeTable: React.FC = () => {
       void bringTimetable(); // 토큰이 있으면 시간표 정보 가져오기
     }
   }, [navigate]);
-
-  const goToTimetablelist = () => {
-    navigate('/timetables/:id/lectures');
-  };
 
   const bringTimetable = async (): Promise<void> => {
     const token = localStorage.getItem('token') as string;
@@ -61,6 +56,15 @@ const TimeTable: React.FC = () => {
   }, []);
 
   console.debug(LectureList);
+
+  const goToTimetablelist = () => {
+    if (LectureList !== null) {
+      const id = LectureList._id; // LectureList의 _id를 가져옴
+      navigate(`/timetables/${id}/lectures`);
+    } else {
+      console.error('LectureList is null. Cannot navigate.');
+    }
+  };
 
   return (
     <div className="flex flex-col h-[100dvh]">

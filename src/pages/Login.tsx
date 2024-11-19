@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styles from '@/app/Login.module.css';
+import styles from '@/styles/Login.module.css';
 
 interface LoginProps {
   goLogin?: () => void;

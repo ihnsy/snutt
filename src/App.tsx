@@ -1,5 +1,5 @@
 import '@/reset.css';
-import '@/app/tailwind.css';
+import '@/styles/tailwind.css';
 
 import {
   BrowserRouter as Router,
@@ -13,12 +13,12 @@ import image2 from '@/../assets/facebook.png';
 import image3 from '@/../assets/google.png';
 import image4 from '@/../assets/kakao.png';
 import logo from '@/../assets/logo.svg';
-import styles from '@/app/App.module.css';
-import LectureDetail from '@/app/LectureDetail';
-import Login from '@/app/Login';
-import MyPage from '@/app/MyPage';
-import TimeTable from '@/app/TimeTable';
-import Timetablelist from '@/app/Timetablelist';
+import LectureDetail from '@/pages/LectureDetail';
+import Login from '@/pages/Login';
+import MyPage from '@/pages/MyPage';
+import TimeTable from '@/pages/TimeTable';
+import Timetablelist from '@/pages/Timetablelist';
+import styles from '@/styles/App.module.css';
 
 export const App = () => {
   return (
