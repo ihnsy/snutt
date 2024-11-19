@@ -14,6 +14,7 @@ import image3 from '@/../assets/google.png';
 import image4 from '@/../assets/kakao.png';
 import logo from '@/../assets/logo.svg';
 import styles from '@/app/App.module.css';
+import LectureDetail from '@/app/LectureDetail';
 import Login from '@/app/Login';
 import MyPage from '@/app/MyPage';
 import TimeTable from '@/app/TimeTable';
@@ -26,6 +27,10 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<TimeTable />} />
           <Route path="timetables/:id/lectures" element={<Timetablelist />} />
+          <Route
+            path="timetables/:id/lectures/:lectureId"
+            element={<LectureDetail />}
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/home" element={<HomePage />} />
