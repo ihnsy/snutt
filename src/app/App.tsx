@@ -27,7 +27,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<TimeTable />} />
           <Route path="timetables/:id/lectures" element={<Timetablelist />} />
-          <Route path="timetables/:id/lectures/:id" element={<LectureDetail />}/>
+          <Route path="timetables/:id/lectures/:lectureId" element={<LectureDetail />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/home" element={<HomePage />} />
