@@ -25,7 +25,11 @@ const Timetablelist: React.FC = () => {
   };
 
   const goToLectureDetail = (lectureId: string) => {
-    if (LectureList !== null && typeof LectureList._id === 'string' && LectureList._id.trim() !== '') {
+    if (
+      LectureList !== null &&
+      typeof LectureList._id === 'string' &&
+      LectureList._id.trim() !== ''
+    ) {
       navigate(`/timetables/${LectureList._id}/lectures/${lectureId}`);
     } else {
       console.error('LectureList or _id is invalid');

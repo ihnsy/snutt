@@ -6,7 +6,9 @@ import type { LectureList } from '@/app/LectureTypes';
 const LectureDetail: React.FC = () => {
   const navigate = useNavigate();
   const { id, lectureId } = useParams<{ id?: string; lectureId?: string }>();
-  const [lecture, setLecture] = useState<LectureList['lecture_list'][number] | null>(null);
+  const [lecture, setLecture] = useState<
+    LectureList['lecture_list'][number] | null
+  >(null);
 
   useEffect(() => {
     const fetchLectureDetail = async (): Promise<void> => {
@@ -31,11 +33,13 @@ const LectureDetail: React.FC = () => {
           {
             method: 'GET',
             headers: { 'x-access-token': token },
-          }
+          },
         );
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch lecture detail: ${response.statusText}`);
+          throw new Error(
+            `Failed to fetch lecture detail: ${response.statusText}`,
+          );
         }
 
         const data = (await response.json()) as LectureList;
@@ -81,7 +85,7 @@ const LectureDetail: React.FC = () => {
         {
           method: 'DELETE',
           headers: { 'x-access-token': token },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -101,7 +105,8 @@ const LectureDetail: React.FC = () => {
   }
 
   const courseTitle =
-    typeof lecture.course_title === 'string' && lecture.course_title.trim() !== ''
+    typeof lecture.course_title === 'string' &&
+    lecture.course_title.trim() !== ''
       ? lecture.course_title.trim()
       : '강의 제목 없음';
 
@@ -111,7 +116,9 @@ const LectureDetail: React.FC = () => {
       : '정보 없음';
 
   const credit =
-    typeof lecture.credit === 'number' && !isNaN(lecture.credit) && lecture.credit > 0
+    typeof lecture.credit === 'number' &&
+    !isNaN(lecture.credit) &&
+    lecture.credit > 0
       ? lecture.credit
       : '정보 없음';
 
@@ -121,7 +128,9 @@ const LectureDetail: React.FC = () => {
         {/* 상단 네비게이션 */}
         <div className="flex justify-between items-center border-b pb-2 mb-4 w-full">
           <button
-            onClick={() => { navigate(`/timetables/:id/lectures`); }}
+            onClick={() => {
+              navigate(`/timetables/:id/lectures`);
+            }}
             className="text-blue-500 text-lg"
           >
             ← 돌아가기
@@ -136,22 +145,65 @@ const LectureDetail: React.FC = () => {
 
         {/* 상세 정보 */}
         <div className="text-center space-y-2 mb-6">
-          <p>학과: {typeof lecture.department === 'string' && lecture.department.trim() !== '' ? lecture.department : '정보 없음'}</p>
-          <p>학점: {typeof credit === 'number' && !isNaN(credit) && credit > 0 ? credit : '정보 없음'}</p>
-          <p>분류: {typeof lecture.category === 'string' && lecture.category.trim() !== '' ? lecture.category : '정보 없음'}</p>
-          <p>구분: {typeof lecture.remark === 'string' && lecture.remark.trim() !== '' ? lecture.remark : '(없음)'}</p>
-          <p>강좌번호: {typeof lecture.course_number === 'string' && lecture.course_number.trim() !== '' ? lecture.course_number : '정보 없음'}</p>
-          <p>분반번호: {typeof lecture.lecture_number === 'string' && lecture.lecture_number.trim() !== '' ? lecture.lecture_number : '정보 없음'}</p>
-          <p>정원: {typeof lecture.quota === 'number' && !isNaN(lecture.quota) && lecture.quota > 0 ? lecture.quota : '정보 없음'}</p>
+          <p>
+            학과:{' '}
+            {typeof lecture.department === 'string' &&
+            lecture.department.trim() !== ''
+              ? lecture.department
+              : '정보 없음'}
+          </p>
+          <p>
+            학점:{' '}
+            {typeof credit === 'number' && !isNaN(credit) && credit > 0
+              ? credit
+              : '정보 없음'}
+          </p>
+          <p>
+            분류:{' '}
+            {typeof lecture.category === 'string' &&
+            lecture.category.trim() !== ''
+              ? lecture.category
+              : '정보 없음'}
+          </p>
+          <p>
+            구분:{' '}
+            {typeof lecture.remark === 'string' && lecture.remark.trim() !== ''
+              ? lecture.remark
+              : '(없음)'}
+          </p>
+          <p>
+            강좌번호:{' '}
+            {typeof lecture.course_number === 'string' &&
+            lecture.course_number.trim() !== ''
+              ? lecture.course_number
+              : '정보 없음'}
+          </p>
+          <p>
+            분반번호:{' '}
+            {typeof lecture.lecture_number === 'string' &&
+            lecture.lecture_number.trim() !== ''
+              ? lecture.lecture_number
+              : '정보 없음'}
+          </p>
+          <p>
+            정원:{' '}
+            {typeof lecture.quota === 'number' &&
+            !isNaN(lecture.quota) &&
+            lecture.quota > 0
+              ? lecture.quota
+              : '정보 없음'}
+          </p>
         </div>
 
         {/* 시간 및 장소 */}
         <div className="text-center border-t border-b py-4 mb-6">
           <h2 className="text-xl font-bold mb-2">시간 및 장소</h2>
           {lecture.class_time_json.map((time, i) => {
-            const timeDay = typeof time.day === 'number' ? `요일 ${time.day}` : '미정';
+            const timeDay =
+              typeof time.day === 'number' ? `요일 ${time.day}` : '미정';
             const timeStart =
-              typeof time.start_time === 'string' && time.start_time.trim() !== ''
+              typeof time.start_time === 'string' &&
+              time.start_time.trim() !== ''
                 ? time.start_time
                 : '-';
             const timeEnd =
@@ -165,7 +217,9 @@ const LectureDetail: React.FC = () => {
 
             return (
               <div key={i} className="mb-2">
-                <p className="font-medium">{timeDay} {timeStart} ~ {timeEnd}</p>
+                <p className="font-medium">
+                  {timeDay} {timeStart} ~ {timeEnd}
+                </p>
                 <p className="text-gray-600">장소: {place}</p>
               </div>
             );
@@ -174,7 +228,9 @@ const LectureDetail: React.FC = () => {
 
         <div className="flex flex-col space-y-4 w-full">
           <button
-            onClick={() => { void handleDelete(); }}
+            onClick={() => {
+              void handleDelete();
+            }}
             className="w-full py-3 text-red-500 font-bold"
           >
             삭제
