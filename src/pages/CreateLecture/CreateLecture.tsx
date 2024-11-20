@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import type { Lecture } from '@/types/CreateLectureType';
 
 const CreateLecture = () => {
+  const token = localStorage.getItem('token') as string;
+  console.debug(token);
   const { id } = useParams<{ id?: string }>();
   const [formData, setFormData] = useState({
     course_title: '',
@@ -34,27 +36,28 @@ const CreateLecture = () => {
           {
             day: '2', // 고정
             place: formData.place,
-            startMinute: 1140, // 고정
-            endMinute: 1230, // 고정
-            start_time: '19:00', // 고정
-            end_time: '20:30', // 고정
+            startMinute: 1240, // 고정
+            endMinute: 1330, // 고정
             len: 1.5, // 고정
             start: 11, // 고정
           },
         ],
-        color: [{ bg: 'white', fg: 'white' }], // 고정
         colorIndex: 0, // 고정
         is_forced: false, // 고정
       };
 
       try {
-        const response = await fetch(`/v1/tables/${id ?? ''}/lecture`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
+        const response = await fetch(
+          `https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/${id ?? ''}/lecture`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-access-token': token,
+            },
+            body: JSON.stringify(lectureData),
           },
-          body: JSON.stringify(lectureData),
-        });
+        );
 
         if (response.ok) {
           alert('강의가 성공적으로 생성되었습니다!');
