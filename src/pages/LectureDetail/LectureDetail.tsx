@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import type { LectureList } from '@/types/LectureTypes';
 
+const WEEKDAYS = ['월', '화', '수', '목', '금', '토', '일'];
+
 const LectureDetail: React.FC = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token') as string;
@@ -178,7 +180,7 @@ const LectureDetail: React.FC = () => {
         <h2 className="text-l font-bold mb-2">시간 및 장소</h2>
         {lecture.class_time_json.map((time, i) => {
           const timeDay =
-            typeof time.day === 'number' ? `요일 ${time.day}` : '미정';
+            typeof time.day === 'number' ? WEEKDAYS[time.day] : '미정';
           const timeStart =
             typeof time.start_time === 'string' && time.start_time.trim() !== ''
               ? time.start_time
