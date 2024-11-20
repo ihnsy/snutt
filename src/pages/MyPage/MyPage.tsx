@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Navbar } from '@/components/Navbar';
-import styles from '@/styles/MyPage.module.css';
+import styles from '@/pages/MyPage/MyPage.module.css';
 
 type UserData = {
   nickname: {
