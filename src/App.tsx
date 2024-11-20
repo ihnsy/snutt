@@ -14,6 +14,7 @@ import image3 from '@/../assets/google.png';
 import image4 from '@/../assets/kakao.png';
 import logo from '@/../assets/logo.svg';
 import styles from '@/App.module.css';
+import CreateLecture from '@/pages/CreateLecture/CreateLecture';
 import LectureDetail from '@/pages/LectureDetail/LectureDetail';
 import Login from '@/pages/Login/Login';
 import MyPage from '@/pages/MyPage/MyPage';
@@ -31,6 +32,7 @@ export const App = () => {
             path="timetables/:id/lectures/:lectureId"
             element={<LectureDetail />}
           />
+          <Route path="timetables/:id/new" element={<CreateLecture />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/home" element={<HomePage />} />
