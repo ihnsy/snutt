@@ -5,66 +5,44 @@ import type { LectureList } from '@/types/LectureTypes';
 
 const LectureDetail: React.FC = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token') as string;
   const { id, lectureId } = useParams<{ id?: string; lectureId?: string }>();
   const [lecture, setLecture] = useState<
     LectureList['lecture_list'][number] | null
   >(null);
 
-  useEffect(() => {
-    const fetchLectureDetail = async (): Promise<void> => {
-      if (id == null || lectureId == null) {
-        console.error('Invalid id or lectureId');
-        alert('유효하지 않은 ID입니다.');
-        navigate('/timetables');
-        return;
-      }
-
-      const token = localStorage.getItem('token');
-      if (token == null || token.trim() === '') {
-        console.error('Token is missing');
-        alert('인증 토큰이 없습니다.');
-        navigate('/home');
-        return;
-      }
-
-      try {
-        const response = await fetch(
-          `https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/${id}`,
-          {
-            method: 'GET',
-            headers: { 'x-access-token': token },
-          },
-        );
-
-        if (!response.ok) {
-          throw new Error(
-            `Failed to fetch lecture detail: ${response.statusText}`,
-          );
-        }
-
-        const data = (await response.json()) as LectureList;
-        const foundLecture =
-          data.lecture_list.find((lec) => lec._id === lectureId) ?? null;
-
-        if (foundLecture === null) {
-          console.error('Lecture not found in lecture list');
-          alert('강의를 찾을 수 없습니다.');
-          navigate(`/timetables/${id}/lectures`);
-          return;
-        }
-
-        setLecture(foundLecture);
-      } catch (error: unknown) {
-        console.error('Error fetching lecture detail:', error);
-        alert('강의 정보를 가져오지 못했습니다.');
-        navigate('/timetables');
-      }
-    };
-
-    fetchLectureDetail().catch((err: unknown) => {
-      console.error('Unhandled error in fetchLectureDetail:', err);
+  const fetchLectureList = async (Id: string, Token: string) => {
+    const baseUrl =
+      'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app';
+    const response = await fetch(`${baseUrl}/v1/tables/${Id}`, {
+      method: 'GET',
+      headers: { 'x-access-token': Token },
     });
-  }, [id, lectureId, navigate]);
+    const data = (await response.json()) as LectureList;
+    return data;
+  };
+
+  useEffect(() => {
+    if (id === undefined || token.trim() === '') return;
+    let ignore = false;
+
+    void fetchLectureList(id, token)
+      .then((data) => {
+        if (!ignore) {
+          const Lecture =
+            data.lecture_list.find((lec) => lec._id === lectureId) ?? null;
+          setLecture(Lecture);
+        }
+      })
+      .catch((error: unknown) => {
+        console.error('Failed to fetch lecture list:', error);
+        alert('강의 정보를 불러오는 데 실패했습니다.');
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [id, lectureId, token, navigate]);
 
   const handleDelete = async () => {
     if (id == null || lectureId == null) {
@@ -72,8 +50,7 @@ const LectureDetail: React.FC = () => {
       return;
     }
 
-    const token = localStorage.getItem('token');
-    if (token == null || token.trim() === '') {
+    if (token.trim() === '') {
       alert('인증 토큰이 없습니다.');
       navigate('/home');
       return;
@@ -81,7 +58,7 @@ const LectureDetail: React.FC = () => {
 
     try {
       const response = await fetch(
-        `https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/${id}/lectures/${lectureId}`,
+        `https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/${id}/lecture/${lectureId}`,
         {
           method: 'DELETE',
           headers: { 'x-access-token': token },
