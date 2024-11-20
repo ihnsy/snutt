@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import back from '@/../assets/back_icon.svg';
+import plus from '@/../assets/plus_icon.svg';
 import { Navbar } from '@/components/Navbar';
 import type { LectureList } from '@/types/LectureTypes';
 
@@ -66,10 +67,14 @@ const Timetablelist: React.FC = () => {
   }, []); // 최초 한 번만 실행
 
   console.debug(LectureList); // LectureList 콘솔에 출력 (디버깅 용도)
+  const id = LectureList?._id as string;
+  const goToCreateLecture = () => {
+    navigate(`/timetables/${id}/new`);
+  };
 
   return (
     <div className="flex flex-col h-[100dvh]">
-      <div className="flex border-b-[1px] border-b-[#C8C8C8] h-[50px] py-[10px] px-[5px] justify-between">
+      <div className="flex border-b-[1px] border-b-[#C8C8C8] h-[50px] py-[10px] px-[5px] justify-between items-center">
         <div
           className="flex flex-row items-center gap-[0px] cursor-pointer"
           onClick={goToTimeTable}
@@ -78,6 +83,12 @@ const Timetablelist: React.FC = () => {
           <div className="w-auto h-auto items-center justify-center">
             <p>뒤로</p>
           </div>
+        </div>
+        <div
+          className="items-center justify-center pr-[10px] cursor-pointer"
+          onClick={goToCreateLecture}
+        >
+          <img src={plus} className="w-[20px] h-[20px]" />
         </div>
       </div>
       <div className="1fr">
