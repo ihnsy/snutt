@@ -29,7 +29,7 @@ const TimeTable: React.FC = () => {
     const token = localStorage.getItem('token') as string;
 
     try {
-      const userResponse = await fetch(
+      const Response = await fetch(
         'https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/recent',
         {
           method: 'GET',
@@ -37,17 +37,17 @@ const TimeTable: React.FC = () => {
         },
       );
 
-      if (!userResponse.ok) {
+      if (!Response.ok) {
         throw new Error(
-          `Failed to fetch user data: ${userResponse.statusText}`,
+          `Failed to fetch timetable data: ${Response.statusText}`,
         );
       }
 
-      const userData: LectureList = (await userResponse.json()) as LectureList;
-      setLectureList(userData);
-      console.debug(userData); // 데이터를 state에 저장
+      const Data: LectureList = (await Response.json()) as LectureList;
+      setLectureList(Data);
+      console.debug(Data); // 데이터를 state에 저장
     } catch (error) {
-      console.error('Error fetching user data:', error);
+      console.error('Error fetching timetable data:', error);
     }
   };
 

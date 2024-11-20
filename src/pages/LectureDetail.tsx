@@ -81,7 +81,7 @@ const LectureDetail: React.FC = () => {
 
     try {
       const response = await fetch(
-        `https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/${id}/lectures/${lectureId}`,
+        `https://wafflestudio-seminar-2024-snutt-redirect.vercel.app/v1/tables/${id}/lecture/${lectureId}`,
         {
           method: 'DELETE',
           headers: { 'x-access-token': token },
